@@ -3,7 +3,11 @@ package com.projecttango.examples.java.hellomotiontracking;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,10 +30,6 @@ public class ViewFlightInfoActivity extends Activity {
         String flightNumber;
     }
 
-    public class FlightInfoResult {
-        String result;
-    }
-
     private static final String LOG_TAG = ViewFlightInfoActivity.class.getSimpleName();
 
     private static final String URL =
@@ -37,11 +37,16 @@ public class ViewFlightInfoActivity extends Activity {
 
     OkHttpClient client = new OkHttpClient();
 
+    Gson gson = new GsonBuilder().create();
+
+    TextView flightInfoView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_view_flight_info);
+        flightInfoView = (TextView) findViewById(R.id.flight_info);
 
     }
 
@@ -58,9 +63,11 @@ public class ViewFlightInfoActivity extends Activity {
         try {
             final String result = run(URL);
 
-            final FlightInfoResult resultEvent = new FlightInfoResult();
-            resultEvent.result = result;
-            EventBus.getDefault().post(resultEvent);
+            Gson gson = new GsonBuilder().create();
+
+            FlightApiResponse response = gson.fromJson(result, FlightApiResponse.class);
+
+            EventBus.getDefault().post(response);
 
         } catch (IOException e) {
             throw new RuntimeException("Error getting flight info");
@@ -68,8 +75,9 @@ public class ViewFlightInfoActivity extends Activity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onFlightInfoResult(FlightInfoResult event) {
-        Log.d(LOG_TAG, "Result: " + event.result);
+    public void onFlightInfoResult(FlightApiResponse event) {
+        Log.d(LOG_TAG, "Result: " + event);
+        flightInfoView.setText(event.toString());
     }
 
     @Override
