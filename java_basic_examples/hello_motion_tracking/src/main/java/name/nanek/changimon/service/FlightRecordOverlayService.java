@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import name.nanek.changimon.DebugOverlayActivity;
+import name.nanek.changimon.activity.DebugOverlayActivity;
 import name.nanek.changimon.R;
 
 public class FlightRecordOverlayService extends Service {
@@ -86,8 +86,8 @@ public class FlightRecordOverlayService extends Service {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!");
+                        .setContentTitle("Changi-mon Flight Info")
+                        .setContentText("Click to Enable/Disable");
 
         Intent resultIntent = new Intent(this, DebugOverlayActivity.class);
         PendingIntent resultPendingIntent =

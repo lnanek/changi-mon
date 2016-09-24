@@ -1,4 +1,4 @@
-package name.nanek.changimon;
+package name.nanek.changimon.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import name.nanek.changimon.R;
 import name.nanek.changimon.service.FlightRecordOverlayService;
 
 public class DebugOverlayActivity extends Activity {

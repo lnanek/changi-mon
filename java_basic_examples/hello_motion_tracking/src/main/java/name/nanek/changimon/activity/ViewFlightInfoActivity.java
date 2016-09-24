@@ -1,4 +1,4 @@
-package name.nanek.changimon;
+package name.nanek.changimon.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -18,6 +19,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
 
+import name.nanek.changimon.ChangimonApp;
+import name.nanek.changimon.R;
 import name.nanek.changimon.model.FlightRecord;
 import name.nanek.changimon.model.FlightRecordRequest;
 import name.nanek.changimon.model.FlightRecordResponse;
@@ -46,11 +49,14 @@ public class ViewFlightInfoActivity extends Activity {
 
     Button viewFlightInfoButton;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_view_flight_info);
+        progressBar = (ProgressBar) findViewById(R.id.ctrlActivityIndicator);
         flightInfoView = (TextView) findViewById(R.id.flight_info);
         airlineInput = (EditText) findViewById(R.id.airline_edit_text);
         flightNumberInput = (EditText) findViewById(R.id.flight_number_edit_text);
@@ -70,6 +76,10 @@ public class ViewFlightInfoActivity extends Activity {
     }
 
     public void onViewFlightInfoClicked() {
+
+        viewFlightInfoButton.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
+
         final FlightRecordRequest request = new FlightRecordRequest();
         request.airline = airlineInput.getText().toString();
         request.flightNumber = flightNumberInput.getText().toString();
@@ -97,6 +107,11 @@ public class ViewFlightInfoActivity extends Activity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onFlightInfoResult(FlightRecordResponse event) {
         Log.d(LOG_TAG, "Result: " + event);
+
+        ChangimonApp.getInstance().currentResponse = event;
+
+        viewFlightInfoButton.setEnabled(true);
+        progressBar.setVisibility(View.GONE);
 
         String flightInfoDisplay = "";
 

@@ -15,6 +15,7 @@
     <uses-feature android:glEsVersion="0x00020000" android:required="true" />
 
     <application
+        android:name=".ChangimonApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -25,7 +26,7 @@
             android:required="false" />
 
         <!-- Looks up flight info -->
-        <activity android:name=".ViewFlightInfoActivity"
+        <activity android:name=".activity.ViewFlightInfoActivity"
             android:label="@string/app_name_long"
             android:screenOrientation="fullSensor">
             <intent-filter android:label="@string/app_name">
@@ -36,7 +37,7 @@
 
         <!-- Starts or stops overlay -->
         <activity
-            android:name=".DebugOverlayActivity"
+            android:name=".activity.DebugOverlayActivity"
             android:label="@string/app_name" >
             <!--
             <intent-filter>
@@ -51,7 +52,7 @@
         </service>
 
         <!-- Tracks position indoors and logs it -->
-        <activity android:name=".ViewAirportMapActivity"
+        <activity android:name=".activity.ViewAirportMapActivity"
             android:label="@string/app_name_long"
             android:screenOrientation="fullSensor">
             <!--

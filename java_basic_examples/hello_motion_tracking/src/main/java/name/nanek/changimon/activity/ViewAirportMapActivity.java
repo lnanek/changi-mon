@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package name.nanek.changimon;
+package name.nanek.changimon.activity;
 
 import com.google.atap.tangoservice.Tango;
 import com.google.atap.tangoservice.Tango.OnTangoUpdateListener;
@@ -32,6 +32,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.ArrayList;
+
+import name.nanek.changimon.R;
 
 /**
  * Main Activity class for the Motion Tracking API Sample. Handles the connection to the Tango
