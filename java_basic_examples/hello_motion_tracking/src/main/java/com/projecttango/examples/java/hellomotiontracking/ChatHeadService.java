@@ -1,20 +1,28 @@
 package com.projecttango.examples.java.hellomotiontracking;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import static android.R.attr.id;
+
 public class ChatHeadService extends Service {
 
 	private WindowManager windowManager;
 	private ImageView chatHead;
 	WindowManager.LayoutParams params;
+	private Notification notification;
+    int mNotificationId = 001;
 
 	@Override
 	public void onCreate() {
@@ -66,6 +74,49 @@ public class ChatHeadService extends Service {
 			}
 		});
 		windowManager.addView(chatHead, params);
+
+		startForeground(mNotificationId, foregroundNotification());
+	}
+
+
+	protected Notification foregroundNotification()
+	{
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle("My notification")
+                        .setContentText("Hello World!");
+
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        resultIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+        int mNotificationId = 001;
+        NotificationManager mNotifyMgr =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notification = mBuilder.build();
+        mNotifyMgr.notify(mNotificationId, notification);
+        return notification;
+        /*
+
+        notification = new Notification(R.drawable.ic_launcher, "my Notification", System.currentTimeMillis());
+		notification.flags = notification.flags | Notification.FLAG_ONGOING_EVENT | Notification.FLAG_ONLY_ALERT_ONCE;
+		notification.contentIntent = notificationIntent();
+		//notification.setLatestEventInfo(this, "my Notification", "my Notification", notificationIntent());
+		((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).notify(id, notification);
+		return notification;
+		*/
+	}
+	private PendingIntent notificationIntent() {
+		Intent intent = new Intent(this, MainActivity.class);
+		PendingIntent pending = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+		return pending;
 	}
 
 	@Override
