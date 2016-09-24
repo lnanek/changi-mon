@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.projecttango.examples.java.hellomotiontracking;
+package name.nanek.changimon;
 
 import com.google.atap.tangoservice.Tango;
 import com.google.atap.tangoservice.Tango.OnTangoUpdateListener;
@@ -37,9 +37,9 @@ import java.util.ArrayList;
  * Main Activity class for the Motion Tracking API Sample. Handles the connection to the Tango
  * service and propagation of Tango pose data Layout view.
  */
-public class HelloMotionTrackingActivity extends Activity {
+public class ViewAirportMapActivity extends Activity {
 
-    private static final String TAG = HelloMotionTrackingActivity.class.getSimpleName();
+    private static final String TAG = ViewAirportMapActivity.class.getSimpleName();
 
     private Tango mTango;
     private TangoConfig mConfig;
@@ -47,7 +47,7 @@ public class HelloMotionTrackingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_motion_tracking);
+        setContentView(R.layout.activity_view_airport_map);
     }
 
     @Override
@@ -57,14 +57,14 @@ public class HelloMotionTrackingActivity extends Activity {
         // Initialize Tango Service as a normal Android Service, since we call mTango.disconnect()
         // in onPause, this will unbind Tango Service, so every time when onResume gets called, we
         // should create a new Tango object.
-        mTango = new Tango(HelloMotionTrackingActivity.this, new Runnable() {
+        mTango = new Tango(ViewAirportMapActivity.this, new Runnable() {
             // Pass in a Runnable to be called from UI thread when Tango is ready, this Runnable
             // will be running on a new thread.
             // When Tango is ready, we can call Tango functions safely here only when there is no UI
             // thread changes involved.
             @Override
             public void run() {
-                synchronized (HelloMotionTrackingActivity.this) {
+                synchronized (ViewAirportMapActivity.this) {
                     mConfig = setupTangoConfig(mTango);
 
                     try {
@@ -103,7 +103,7 @@ public class HelloMotionTrackingActivity extends Activity {
      * making this call.
      */
     private TangoConfig setupTangoConfig(Tango tango) {
-        // Create a new Tango Configuration and enable the HelloMotionTrackingActivity API.
+        // Create a new Tango Configuration and enable the ViewAirportMapActivity API.
         TangoConfig config = new TangoConfig();
         config = tango.getConfig(config.CONFIG_TYPE_DEFAULT);
         config.putBoolean(TangoConfig.KEY_BOOLEAN_MOTIONTRACKING, true);

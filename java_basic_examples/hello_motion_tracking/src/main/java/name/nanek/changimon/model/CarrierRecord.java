@@ -1,7 +1,7 @@
-package com.projecttango.examples.java.hellomotiontracking;
+package name.nanek.changimon.model;
 
 /**
- * Carrier part of FlightApiResponse.
+ * Carrier part of FlightRecordResponse.
  *
  * Created by Lance on 9/24/16.
  */

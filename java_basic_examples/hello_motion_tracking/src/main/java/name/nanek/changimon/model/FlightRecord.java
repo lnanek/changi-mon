@@ -1,4 +1,8 @@
-package com.projecttango.examples.java.hellomotiontracking;
+package name.nanek.changimon.model;
+
+import java.util.Date;
+
+import name.nanek.changimon.model.CarrierRecord;
 
 /**
  * Created by Lance on 9/24/16.
@@ -21,7 +25,7 @@ public class FlightRecord {
     public String statusText;
 
     // E.g. 2016-09-25T23:20:00+0800
-    public String scheduled;
+    public Date scheduled;
 
     // E.g. London
     public String city;

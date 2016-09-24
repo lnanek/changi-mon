@@ -1,4 +1,4 @@
-package com.projecttango.examples.java.hellomotiontracking;
+package name.nanek.changimon.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -14,9 +14,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import static android.R.attr.id;
+import name.nanek.changimon.DebugOverlayActivity;
+import name.nanek.changimon.R;
 
-public class ChatHeadService extends Service {
+public class FlightRecordOverlayService extends Service {
 
 	private WindowManager windowManager;
 	private ImageView chatHead;
@@ -88,7 +89,7 @@ public class ChatHeadService extends Service {
                         .setContentTitle("My notification")
                         .setContentText("Hello World!");
 
-        Intent resultIntent = new Intent(this, MainActivity.class);
+        Intent resultIntent = new Intent(this, DebugOverlayActivity.class);
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         this,
@@ -114,7 +115,7 @@ public class ChatHeadService extends Service {
 		*/
 	}
 	private PendingIntent notificationIntent() {
-		Intent intent = new Intent(this, MainActivity.class);
+		Intent intent = new Intent(this, DebugOverlayActivity.class);
 		PendingIntent pending = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		return pending;
 	}

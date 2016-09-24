@@ -1,12 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    >
 
-   <TextView
-       android:id="@+id/flight_info"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Flight Info:" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Changi-mon"
+        android:paddingBottom="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Collect all the airport finds before your flight and win a coupon! Have fun and learn about the airport."
+        android:paddingBottom="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Airline:" />
+
+    <EditText
+        android:id="@+id/airline_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:text="BA"
+        android:paddingBottom="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Flight Number:" />
+
+    <EditText
+        android:id="@+id/flight_number_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:text="0012"
+        android:paddingBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/view_flight_info_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Get Started!"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        />
+
+    <TextView
+        android:id="@+id/flight_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        />
 
 </LinearLayout>

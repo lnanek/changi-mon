@@ -1,4 +1,4 @@
-package com.projecttango.examples.java.hellomotiontracking;
+package name.nanek.changimon.model;
 
 import java.util.Date;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Lance on 9/24/16.
  */
 
-public class FlightApiResponse {
+public class FlightRecordResponse {
 
     // E.g. true
     public boolean success;
@@ -23,16 +23,29 @@ public class FlightApiResponse {
     public String flightNumber;
 
     // E.g. 2016-09-25
-    public Date flightDate;
+    public String flightDate;
 
     // E.g. D
     public String adi;
 
     public List<FlightRecord> flightRecord;
 
+    public String getAdiDisplayString() {
+        if (null == adi) {
+            return "";
+        }
+        if ("D".equals(adi)) {
+            return "Departing";
+        }
+        if ("A".equals(adi)) {
+            return "Arriving";
+        }
+        return "Unknown";
+    }
+
     @Override
     public String toString() {
-        return "FlightApiResponse{" +
+        return "FlightRecordResponse{" +
                 "success=" + success +
                 ", airportCode='" + airportCode + '\'' +
                 ", airlineCode='" + airlineCode + '\'' +
