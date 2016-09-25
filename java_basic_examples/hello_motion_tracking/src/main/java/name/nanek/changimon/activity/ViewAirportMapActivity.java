@@ -35,9 +35,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 
+import name.nanek.changimon.ChangimonApp;
 import name.nanek.changimon.R;
+import name.nanek.changimon.model.UpdateOverlayRequest;
 
 /**
  * Main Activity class for the Motion Tracking API Sample. Handles the connection to the Tango
@@ -49,12 +53,17 @@ public class ViewAirportMapActivity extends Activity {
 
     public static float sTangoToPixelFactor = 120;
 
+    private static final Boolean DEBUG_AUTO_X_MOVEMENT = null;
+    //private static final Boolean DEBUG_AUTO_X_MOVEMENT = false;
+
     private static final int HUMAN_TOKEN_START_PERCENT_X = 50;
-    private static final int HUMAN_TOKEN_START_PERCENT_Y = 75;
+    private static final int HUMAN_TOKEN_START_PERCENT_Y = 85;
 
     private Tango mTango;
     private TangoConfig mConfig;
     private View mHumanTokenView;
+    private View mMarker1View;
+    private View mMarker2View;
     private ViewGroup mContentView;
 
     private Float humanTokenCurrentX;
@@ -67,6 +76,8 @@ public class ViewAirportMapActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_airport_map);
         mHumanTokenView = findViewById(R.id.human_token);
+        mMarker1View = findViewById(R.id.marker_1);
+        mMarker2View = findViewById(R.id.marker_2);
         mContentView = (ViewGroup) findViewById(R.id.content_view);
 
         ViewTreeObserver vto = mContentView.getViewTreeObserver();
@@ -144,15 +155,23 @@ public class ViewAirportMapActivity extends Activity {
             Log.d(TAG, "Ignore not Tango, just display map");
         }
 
-        /*
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setHumanTokenInCenter();
-            }
-        }, 1000);
-        */
+        autoMovement.run();
     }
+
+    private Runnable autoMovement = new Runnable() {
+        @Override
+        public void run() {
+            if ( null == DEBUG_AUTO_X_MOVEMENT ) {
+                return;
+            }
+
+            final float autoX = DEBUG_AUTO_X_MOVEMENT ? 0.01f : -0.01f;
+
+            updateHumanTokenPosition(autoX, 0, 0);
+
+            mHumanTokenView.postDelayed(this, 200);
+        }
+    };
 
     @Override
     protected void onPause() {
@@ -292,10 +311,59 @@ public class ViewAirportMapActivity extends Activity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                checkCollected();
                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mHumanTokenView.getLayoutParams();
                 params.setMargins(humanTokenRenderX, humanTokenRenderY, 0, 0);
                 mHumanTokenView.requestLayout();
             }
         });
+    }
+
+    private void checkCollected() {
+        Log.d(TAG, "checkCollected");
+
+        if (mMarker1View.getVisibility() == View.VISIBLE && checkCollision(mMarker1View)) {
+            mMarker1View.setVisibility(View.INVISIBLE);
+            ChangimonApp.getInstance().collected++;
+            EventBus.getDefault().post(new UpdateOverlayRequest());
+        }
+
+        if (mMarker2View.getVisibility() == View.VISIBLE && checkCollision(mMarker2View)) {
+            mMarker2View.setVisibility(View.INVISIBLE);
+            ChangimonApp.getInstance().collected++;
+            EventBus.getDefault().post(new UpdateOverlayRequest());
+        }
+    }
+
+    private boolean checkCollision(View target) {
+
+        ViewGroup.MarginLayoutParams targetParams = (ViewGroup.MarginLayoutParams) target.getLayoutParams();
+        final int targetLeft = targetParams.leftMargin;
+        final int targetRight = targetLeft + target.getWidth();
+        final int targetTop = targetParams.topMargin;
+        final int targetBottom = targetTop + target.getHeight();
+        Log.d(TAG, "checkCollision target at [" + targetLeft + ", " + targetTop + ", " +
+            targetRight + ", " + targetBottom + "]");
+
+        final int humanTokenRenderRight = humanTokenRenderX + mHumanTokenView.getWidth();
+        final int humanTokenRenderBottom = humanTokenRenderY + mHumanTokenView.getHeight();
+        Log.d(TAG, "checkCollision human at [" + humanTokenRenderX + ", " + humanTokenRenderY + ", " +
+                humanTokenRenderRight + ", " + humanTokenRenderBottom + "]");
+
+        boolean leftEdgeInside = humanTokenRenderX > targetLeft && humanTokenRenderX < targetRight;
+        boolean rightEdgeInside = humanTokenRenderRight > targetLeft && humanTokenRenderRight < targetRight;
+        if (leftEdgeInside || rightEdgeInside) {
+            boolean topInside = humanTokenRenderY > targetTop && humanTokenRenderY < targetBottom;
+            boolean bottomInside = humanTokenRenderBottom > targetTop && humanTokenRenderBottom < targetBottom;
+            if (topInside || bottomInside) {
+                Log.d(TAG, "checkCollision leftEdgeInside = " + leftEdgeInside);
+                Log.d(TAG, "checkCollision rightEdgeInside = " + rightEdgeInside);
+                Log.d(TAG, "checkCollision topInside = " + topInside);
+                Log.d(TAG, "checkCollision bottomInside = " + bottomInside);
+                return true;
+            }
+        }
+
+        return false;
     }
 }
