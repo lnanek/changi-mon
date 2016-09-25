@@ -1,0 +1,35 @@
+http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_250_6_7.png
+
+
+wget http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_250_20_7.png
+
+
+convert T3L2_250_0_9.png T3L2_250_1_9.png +append output_9.png
+convert output_9.png T3L2_250_2_9.png +append output_9.png
+convert output_9.png T3L2_250_3_9.png +append output_9.png
+convert output_9.png T3L2_250_4_9.png +append output_9.png
+convert output_9.png T3L2_250_5_9.png +append output_9.png
+convert output_9.png T3L2_250_6_9.png +append output_9.png
+convert output_9.png T3L2_250_7_9.png +append output_9.png
+convert output_9.png T3L2_250_8_9.png +append output_9.png
+convert output_9.png T3L2_250_9_9.png +append output_9.png
+convert output_9.png T3L2_250_10_9.png +append output_9.png
+convert output_9.png T3L2_250_11_9.png +append output_9.png
+convert output_9.png T3L2_250_12_9.png +append output_9.png
+convert output_9.png T3L2_250_13_9.png +append output_9.png
+convert output_9.png T3L2_250_14_9.png +append output_9.png
+convert output_9.png T3L2_250_15_9.png +append output_9.png
+
+convert output_7.png output_8.png -append output_7-8.png
+
+
+convert output_6-8.png output_9.png -append output_6-9.png
+
+
+for i in {1..100}
+do
+    wget "example.com/imageID="$i
+done
+
+
+wget http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_250_{0..15}_8.png
