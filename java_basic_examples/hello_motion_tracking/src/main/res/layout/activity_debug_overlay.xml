@@ -1,31 +1,28 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
     android:background="#FEFEFE"
+    android:orientation="vertical"
     tools:context=".activity.DebugOverlayActivity" >
 
     <Button
         android:id="@+id/startService"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
+        android:layout_margin="20dp"
         android:textColor="#FFF"
         android:background="#000"
-        android:text="start chat head service" />
+        android:text="Start Overlay" />
 
     <Button
         android:id="@+id/stopService"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/startService"
-        android:layout_below="@+id/startService"
-        android:layout_marginTop="39dp"
+        android:layout_margin="20dp"
         android:textColor="#FFF"
         android:background="#000"
-        android:text="stop chat head service" />
+        android:text="Stop Overlay" />
 
-</RelativeLayout>
+</LinearLayout>

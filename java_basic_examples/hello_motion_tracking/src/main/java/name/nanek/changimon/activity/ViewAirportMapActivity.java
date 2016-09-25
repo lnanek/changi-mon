@@ -49,10 +49,17 @@ public class ViewAirportMapActivity extends Activity {
     private static final int HUMAN_TOKEN_START_PERCENT_X = 50;
     private static final int HUMAN_TOKEN_START_PERCENT_Y = 75;
 
+    private static final float TANGO_TO_PIXEL_FACTOR = 60;
+
     private Tango mTango;
     private TangoConfig mConfig;
     private View mHumanTokenView;
     private ViewGroup mContentView;
+
+    private Float humanTokenCurrentX;
+    private Float humanTokenCurrentY;
+    private int humanTokenRenderX;
+    private int humanTokenRenderY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,20 +69,23 @@ public class ViewAirportMapActivity extends Activity {
         mContentView = (ViewGroup) findViewById(R.id.content_view);
     }
 
-    private void setHumanTokenInCenter() {
+    private synchronized void setHumanTokenInCenter() {
         final int contentWidth = mContentView.getWidth();
         final int contentHeight = mContentView.getHeight();
 
         final int tokenWidth = mHumanTokenView.getWidth();
         final int tokenHeight = mHumanTokenView.getHeight();
 
-        final int left = (contentWidth * HUMAN_TOKEN_START_PERCENT_X / 100) - tokenWidth;
-        final int top = (contentHeight * HUMAN_TOKEN_START_PERCENT_Y / 100) - tokenHeight;
+        humanTokenCurrentX = (contentWidth * HUMAN_TOKEN_START_PERCENT_X / 100.0f) - tokenWidth;
+        humanTokenCurrentY = (contentHeight * HUMAN_TOKEN_START_PERCENT_Y / 100.0f) - tokenHeight;
 
-        Log.d(TAG, "Updating human token margins to: " + left + ", " + top);
+        humanTokenRenderX = Math.round(humanTokenCurrentX);
+        humanTokenRenderY = Math.round(humanTokenCurrentY);
+
+        Log.d(TAG, "Updating human token margins to: " + humanTokenRenderX + ", " + humanTokenRenderY);
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mHumanTokenView.getLayoutParams();
-        params.setMargins(left, top, 0, 0);
+        params.setMargins(humanTokenRenderX, humanTokenRenderY, 0, 0);
         mHumanTokenView.requestLayout();
         //mHumanTokenView.setLayoutParams(params);
     }
@@ -173,7 +183,7 @@ public class ViewAirportMapActivity extends Activity {
         mTango.connectListener(framePairs, new OnTangoUpdateListener() {
             @Override
             public void onPoseAvailable(final TangoPoseData pose) {
-                logPose(pose);
+                onPoseUpdate(pose);
             }
 
             @Override
@@ -198,17 +208,34 @@ public class ViewAirportMapActivity extends Activity {
         });
     }
 
+    private float lastPositionX;
+    private float lastPositionY;
+    private float lastPositionZ;
+
     /**
      * Log the Position and Orientation of the given pose in the Logcat as information.
      *
      * @param pose the pose to log.
      */
-    private void logPose(TangoPoseData pose) {
+    private void onPoseUpdate(TangoPoseData pose) {
         StringBuilder stringBuilder = new StringBuilder();
 
         float translation[] = pose.getTranslationAsFloats();
+
+        float newPositionX = translation[0];
+        float newPositionY = translation[1];
+        float newPositionZ = translation[2];
+
+        float deltaX = newPositionX - lastPositionX;
+        float deltaY = newPositionY - lastPositionY;
+        float deltaZ = newPositionZ - lastPositionZ;
+
+        lastPositionX = newPositionX;
+        lastPositionY = newPositionY;
+        lastPositionZ = newPositionZ;
+
         stringBuilder.append("Position: " +
-                translation[0] + ", " + translation[1] + ", " + translation[2]);
+                lastPositionX + ", " + lastPositionY + ", " + lastPositionZ);
 
         float orientation[] = pose.getRotationAsFloats();
         stringBuilder.append(". Orientation: " +
@@ -216,5 +243,37 @@ public class ViewAirportMapActivity extends Activity {
                 orientation[2] + ", " + orientation[3]);
 
         Log.i(TAG, stringBuilder.toString());
+
+        updateHumanTokenPosition(deltaX, deltaY, deltaZ);
+    }
+
+    private synchronized  void updateHumanTokenPosition(float deltaX, float deltaY, float deltaZ) {
+        Log.d(TAG, "updateHumanTokenPosition(" + deltaX + ", " + deltaY + ", " + deltaZ + ")");
+
+        humanTokenCurrentX += (deltaX * TANGO_TO_PIXEL_FACTOR);
+        humanTokenCurrentY += (deltaY * TANGO_TO_PIXEL_FACTOR);
+
+        int newHumanTokenRenderX = Math.round(humanTokenCurrentX);
+        int newHumanTokenRenderY = Math.round(humanTokenCurrentY);
+
+        // Abort if didn't move
+        if (humanTokenRenderX == newHumanTokenRenderX &&
+                humanTokenRenderY == newHumanTokenRenderY) {
+            return;
+        }
+
+        humanTokenRenderX = newHumanTokenRenderX;
+        humanTokenRenderY = newHumanTokenRenderY;
+
+        Log.d(TAG, "Updating human token margins to: " + humanTokenRenderX + ", " + humanTokenRenderY);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mHumanTokenView.getLayoutParams();
+                params.setMargins(humanTokenRenderX, humanTokenRenderY, 0, 0);
+                mHumanTokenView.requestLayout();
+            }
+        });
     }
 }
