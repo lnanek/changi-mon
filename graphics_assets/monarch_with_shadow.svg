@@ -30,6 +30,67 @@
          stdDeviation="145.78587"
          id="feGaussianBlur4163" />
     </filter>
+    <filter
+       inkscape:collect="always"
+       x="-.26663"
+       y="-.63587"
+       color-interpolation-filters="sRGB"
+       width="1.5333"
+       height="2.2717"
+       id="filter3794">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="19.045174"
+         id="feGaussianBlur3796" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       x="-.26663"
+       y="-.63587"
+       color-interpolation-filters="sRGB"
+       width="1.5333"
+       height="2.2717"
+       id="filter3798">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="19.045174"
+         id="feGaussianBlur3800" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       x="-.078750"
+       y="-.40874"
+       color-interpolation-filters="sRGB"
+       width="1.1575"
+       height="1.8175"
+       id="filter3810">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="23.760542"
+         id="feGaussianBlur3812" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter3816">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="13.205098"
+         id="feGaussianBlur3818" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       x="-.26298"
+       y="-.16261"
+       color-interpolation-filters="sRGB"
+       width="1.526"
+       height="1.3252"
+       id="filter3826">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="11.41575"
+         id="feGaussianBlur3828" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -39,8 +100,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.0615567"
-     inkscape:cx="0.089436971"
-     inkscape:cy="48.643557"
+     inkscape:cx="-157.1835"
+     inkscape:cy="100.90455"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -71,12 +132,33 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-258.5882,-438.88766)">
+    <ellipse
+       ry="29.001945"
+       rx="48.727608"
+       cy="491.94501"
+       cx="168.67535"
+       id="ellipse4445"
+       style="fill:none;fill-opacity:0.89830508;stroke:#000000;stroke-width:1.09307778;stroke-opacity:1"
+       inkscape:export-filename="/Users/Lance/Desktop/butterfly_circle.png"
+       inkscape:export-xdpi="206.51787"
+       inkscape:export-ydpi="206.51787" />
+    <ellipse
+       style="fill:none;fill-opacity:0.89830508;stroke:#000000;stroke-width:1.09307778;stroke-opacity:1"
+       id="path4420"
+       cx="52.675346"
+       cy="487.94501"
+       rx="48.727608"
+       ry="29.001945"
+       inkscape:export-filename="/Users/Lance/Desktop/mask_circle.png"
+       inkscape:export-xdpi="314.90543"
+       inkscape:export-ydpi="314.90543" />
     <g
        transform="matrix(0.03129682,-0.00390733,0.00667151,0.01832973,137.87646,479.35899)"
        id="g3347"
        style="fill:#000000;fill-opacity:0.31073447;filter:url(#filter4161)"
-       inkscape:export-xdpi="228.46039"
-       inkscape:export-ydpi="228.46039">
+       inkscape:export-xdpi="206.51787"
+       inkscape:export-ydpi="206.51787"
+       inkscape:export-filename="/Users/Lance/Desktop/butterfly_circle.png">
       <path
          style="display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:0.31073447;fill-rule:nonzero;stroke:#020202;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
          d="m 573.05714,1871.626 c -25.2069,-5.692 -67.2451,-24.9917 -88.47,-40.6166 -37.7314,-27.7763 -76.6706,-80.3494 -150.4329,-203.1048 -19.8514,-33.0367 -31.1832,-57.6848 -39.8928,-86.7718 -6.6909,-22.3453 -18.8271,-60.1513 -26.9695,-84.0136 -13.211,-38.7165 -23.92378,-46.3822 -23.84628,-83.8402 0.098,-47.4016 13.99258,-95.6236 25.50638,-162.0135 6.9453,-40.047 11.3934,-52.5766 37.4063,-105.3658 20.8062,-42.2234 28.9346,-63.0106 27.5288,-70.4015 -4.9368,-25.954 -58.9428,-170.8639 -80.9679,-217.2546 -13.3972,-28.2183 -38.0611,-71.2633 -54.8084,-95.6556 -37.6064,-54.7737 -47.4031,-72.0141 -66.5422,-117.1047 -14.7636,-34.7819 -15.0961,-36.7428 -15.0657,-88.8378 0.058,-98.991 9.2711,-131.9054 48.6175,-173.691 32.7878,-34.8203 41.9435,-38.4612 104.6262,-41.606 52.202,-2.619 93.5366,4.5476 152.4927,26.4393 44.5465,16.5411 90.1377,39.429 83.1678,41.7523 -5.1217,1.7072 -6.5423,21.4338 -1.5609,21.674 1.7045,0.0823 16.1353,0.5471 32.0685,1.033 27.4102,0.8361 31.7471,2.4233 80.5738,29.4896 163.5578,90.6655 266.6953,165.3093 399.05926,288.8114 48.6337,45.3776 57.3047,55.2282 52.6829,59.85 -3.0428,3.0427 -5.5323,7.1163 -5.5323,9.0521 0,8.9099 23.2336,29.561 44.6097,39.6513 12.9626,6.1188 34.7246,19.6068 48.3602,29.9734 56.3683,42.8546 200.779,199.5145 267.6119,290.311 35.9271,48.8094 66.2601,73.4009 98.8478,80.1381 7.5261,1.5559 30.0186,10.2616 49.9833,19.3461 32.8976,14.969 38.3192,16.2457 57.8479,13.622 11.8518,-1.5923 24.2696,-4.3781 27.5956,-6.1908 3.9576,-2.1569 10.2762,0.2627 18.2858,7.0024 7.7377,6.5108 15.6811,9.6399 21.5991,8.5086 7.2646,-1.3886 10.4765,0.9046 14.3439,10.2414 6.9106,16.6837 -4.4374,56.3583 -23.5782,82.4334 -20.4665,27.8809 -22.5532,38.267 -13.4579,66.9855 -94.9595,-93.7607 -77.9358,-85.3778 -113.2953,-46.5101 -42.4679,-13.4861 -15.1636,87.499 -35.9704,104.8827 -9.5204,7.954 -19.8584,14.4619 -22.9732,14.4619 -3.1148,0 -12.0164,5.5782 -19.7815,12.396 -7.765,6.8178 -15.9907,12.396 -18.2794,12.396 -2.2886,0 -35.0098,14.7585 -72.7138,32.7967 -37.7039,18.0381 -69.5181,31.2345 -70.6981,29.3252 -5.7717,-9.3388 -44.0489,-0.4747 -101.3216,23.4636 -136.9641,57.2467 -263.32416,115.9666 -346.97166,161.2384 -194.1411,105.0736 -203.1336,108.8383 -258.0824,108.0483 -18.3364,-0.2635 -37.0578,-1.3191 -41.603,-2.3454 l 0,10e-5 z"
@@ -115,8 +197,9 @@
     <g
        id="g10001"
        transform="matrix(0.02856427,-0.00608902,0.00608902,0.02856427,139.95748,445.67325)"
-       inkscape:export-xdpi="228.46039"
-       inkscape:export-ydpi="228.46039">
+       inkscape:export-xdpi="206.51787"
+       inkscape:export-ydpi="206.51787"
+       inkscape:export-filename="/Users/Lance/Desktop/butterfly_circle.png">
       <path
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="csssssscsssscsssssssssssscssssssssccssssssccscc"
@@ -186,6 +269,167 @@
              style="fill:#000000" />
         </g>
       </g>
+    </g>
+    <g
+       id="g4426"
+       transform="translate(-17.495863,0)"
+       inkscape:export-filename="/Users/Lance/Desktop/mask_circle.png"
+       inkscape:export-xdpi="314.90543"
+       inkscape:export-ydpi="314.90543">
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         transform="matrix(0.05253585,0,0,0.05253585,25.002648,456.21654)"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccssc"
+         d="m 420,192.36 c 76.969,258.52 250.53,682.23 565.71,580 324.1,-80.503 66.334,-721.76 -31.429,-831.43 -5.6152,-21.55 -105.71,22.857 -105.71,22.857 0,0 93.1,1.7801 91.429,34.286 -2.52,48.955 -93.59,138.05 -165.71,171.43 -107.4,49.69 -354.29,22.85 -354.29,22.85 z"
+         style="opacity:0.21463001;fill:#000000;stroke:#a6a3a3;stroke-width:4.69999981;filter:url(#filter3816)"
+         id="path3814" />
+      <g
+         id="g4422">
+        <path
+           transform="matrix(0.06080694,0,0,-0.12633293,18.943642,603.86364)"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccssc"
+           d="m 420,867.23 c 76.969,-42.287 250.53,-111.59 565.71,-94.871 324.1,13.168 66.334,118.06 -31.429,136 -5.6152,3.525 -105.71,-3.7388 -105.71,-3.7388 0,0 93.1,-0.29117 91.429,-5.6082 -2.5172,-8.0082 -93.585,-22.581 -165.71,-28.041 -107.4,-8.13 -354.29,-3.74 -354.29,-3.74 z"
+           style="opacity:0.55609999;fill:#000000;fill-opacity:0.89830508;stroke:#a6a3a3;stroke-width:1.90090001;filter:url(#filter3810)"
+           id="path3565"
+           inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+           inkscape:export-xdpi="314.90543"
+           inkscape:export-ydpi="314.90543" />
+        <path
+           id="path2996"
+           sodipodi:nodetypes="ccccssc"
+           style="fill:#ff7f50;stroke:#a6a3a3;stroke-width:0.09981813"
+           inkscape:connector-curvature="0"
+           d="m 47.067889,466.32313 c 4.043735,13.58177 13.16171,35.84161 29.720702,30.47042 17.026835,-4.22933 3.484933,-37.91806 -1.651122,-43.68065 -0.295038,-1.13217 -5.553842,1.20081 -5.553842,1.20081 0,0 4.891034,0.0935 4.803383,1.80125 -0.132268,2.57204 -4.916577,7.25285 -8.705994,9.00625 -5.642413,2.61081 -18.612649,1.20081 -18.612649,1.20081 z"
+           inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+           inkscape:export-xdpi="314.90543"
+           inkscape:export-ydpi="314.90543" />
+      </g>
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         d="m 69.88506,454.16399 1.964352,5.55311 c 0,0 4.405735,-2.77876 3.571483,-4.36311 -0.697869,-1.32554 -5.535835,-1.18996 -5.535835,-1.18996 z"
+         inkscape:connector-curvature="0"
+         style="fill:#808080;stroke:#000000;stroke-width:0.05377988px"
+         sodipodi:nodetypes="ccsc"
+         id="path3774" />
+      <ellipse
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         style="fill:#000000;fill-opacity:0.99216003;stroke:#a6a3a3;stroke-width:0.20255785"
+         id="path3776"
+         cx="53.897472"
+         cy="474.87836"
+         rx="0.99784768"
+         ry="1.8234057" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         d="m 36.560627,505.35107 c 0,0 -2.401692,-5.55384 0.450312,-8.70599 2.851894,-3.15215 4.953512,-7.65528 4.953512,-7.65528 0,0 -3.30228,-2.55182 0,-6.3043 3.30228,-3.75267 11.257814,-7.65528 11.257814,-7.65528 l 1.200845,1.50103 c 0,0 -9.75671,4.353 -11.107685,6.00405 -1.350937,1.65115 -2.101434,3.30228 -0.900625,4.80338 1.200809,1.50103 1.801195,0.15009 -1.200845,5.10346 -3.002023,4.95351 -5.103457,1.65115 -4.653255,12.90886 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000;stroke-width:0.05253585px"
+         id="path3778" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         d="m 78.892781,462.89608 c 0,0 7.65785,-2.13249 10.86917,1.36475 3.211321,3.49725 -1.235134,4.60621 -0.247023,6.7387 1.60204,3.45737 22.478872,1.36476 18.774352,1.87652 -1.11984,0.15469 -17.879276,1.15731 -17.538776,-1.36476 0.359187,-2.66023 1.729181,-6.56799 0,-8.18872 -1.729182,-1.62065 -1.482122,-1.36473 -4.199377,-1.70595 -8.243847,-1.03512 -7.657849,1.27951 -7.657849,1.27951 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000;stroke-width:0.05080487px"
+         sodipodi:nodetypes="cssssssc"
+         id="path3780" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         d="m 60.307696,477.19413 c -0.490262,-1.98879 2.711871,-2.74733 4.366594,-3.15343 1.440997,-0.35351 4.043368,-1.02371 4.366595,0.742 0.211301,1.15428 -1.497446,1.57531 -2.409225,1.94763 -2.004411,0.81858 -5.710403,2.95296 -6.323964,0.46371 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000;stroke-width:0.02924661px"
+         sodipodi:nodetypes="sssss"
+         id="path3782" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000;stroke-width:0.02398751px"
+         sodipodi:nodetypes="sssss"
+         d="m 72.637726,472.94937 c -0.381459,-1.69861 2.110254,-2.48898 3.397833,-2.90941 1.121297,-0.36617 3.146271,-1.05483 3.397833,0.45792 0.164434,0.98894 -1.165197,1.42473 -1.874679,1.78489 -1.55974,0.79188 -4.443405,2.79273 -4.920987,0.66658 z"
+         id="path3784" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         d="m 69.43302,488.08719 c 9.907759,6.52702 11.762592,-2.48034 9.15638,-5.10346 -1.200331,4.52261 -7.756159,3.88093 -9.15638,5.10346 z"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000;stroke-width:0.05253585px"
+         sodipodi:nodetypes="ccc"
+         id="path3788" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         transform="matrix(0.05253585,0,0,0.05253585,25.002648,456.21654)"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccsc"
+         d="m 651.43,366.65 c 47.753,-45.38 108.64,-57.921 171.43,-65.714 0,0 -86.3,-15.624 -122.86,2.8571 -23.631,11.947 -48.571,62.857 -48.571,62.857 z"
+         style="opacity:0.54145998;fill:#b22222;stroke:#000000;stroke-width:1px;filter:url(#filter3794)"
+         id="path3790" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         transform="matrix(0.05253585,0,0,0.05253585,25.002648,456.21654)"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccsc"
+         d="m 885.71,295.22 c 47.753,-45.38 108.64,-57.921 171.43,-65.714 0,0 -86.3,-15.624 -122.86,2.8571 -23.631,11.947 -48.571,62.857 -48.571,62.857 z"
+         style="opacity:0.54145998;fill:#8b0000;stroke:#000000;stroke-width:1px;filter:url(#filter3798)"
+         id="path3792" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         transform="matrix(-0.05609704,0,0,-0.07176225,131.79982,538.96005)"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccsc"
+         d="m 925.71,720.93 c 47.753,-45.38 108.64,-57.921 171.43,-65.714 0,0 -86.3,-15.624 -122.86,2.8571 -23.631,11.947 -48.571,62.857 -48.571,62.857 z"
+         style="opacity:0.54145998;fill:#696969;stroke:#000000;stroke-width:1px;filter:url(#filter3798)"
+         id="path3802" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         transform="matrix(-0.01631735,-0.0573227,0.06089675,-0.01535943,54.050802,535.2298)"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccsc"
+         d="m 651.43,366.65 c 47.753,-45.38 108.64,-57.921 171.43,-65.714 0,0 -86.3,-15.624 -122.86,2.8571 -23.631,11.947 -48.571,62.857 -48.571,62.857 z"
+         style="opacity:0.54145998;fill:#ff0000;stroke:#000000;stroke-width:1px;filter:url(#filter3794)"
+         id="path3804" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         transform="matrix(-0.04655276,-0.05446897,-0.06026279,0.068179,134.50655,496.82295)"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccsc"
+         d="m 651.43,366.65 c 47.753,-45.38 108.64,-57.921 171.43,-65.714 0,0 -86.3,-15.624 -122.86,2.8571 -23.631,11.947 -48.571,62.857 -48.571,62.857 z"
+         style="opacity:0.54145998;fill:#ff0000;stroke:#000000;stroke-width:1px;filter:url(#filter3794)"
+         id="path3806" />
+      <path
+         inkscape:export-ydpi="314.90543"
+         inkscape:export-xdpi="314.90543"
+         inkscape:export-filename="/Users/Lance/Desktop/mask_dark_shadow.png"
+         d="m 909.52,384.58 c 4.9114,8.7309 11.395,16.335 17.756,24.021 7.0305,6.7964 13.205,14.291 19.222,21.977 3.8514,5.2934 8.7073,9.6644 13.284,14.293 2.9257,3.5832 5.8249,7.2771 8.7491,10.774 4.4526,5.2462 8.7052,12.056 9.06,19.182 0.14508,2.9138 -0.1458,5.8331 -0.2187,8.7497 -2.7463,12.594 -11.465,21.036 -21.157,28.745 -8.0169,5.7349 -15.456,12.169 -23.041,18.441 -3.2699,3.0059 -1.4792,1.4146 -5.3996,4.7425 -20.071,16.939 -44.027,-11.446 -23.956,-28.385 3.3803,-2.8286 1.4524,-1.1722 5.7366,-5.0234 7.8449,-6.4339 15.487,-13.111 23.757,-19.016 4.3018,-3.2769 0.9135,-0.59658 4.9152,-4.03 1.0547,-0.90489 2.8441,-3.6553 2.321,-0.3351 1.4872,8.2083 0.40324,2.893 0.5003,2.3176 0.0689,-0.40855 1.1056,1.1656 0.9734,0.77292 -0.0924,-0.27451 -0.35106,-0.46078 -0.5266,-0.69117 -2.9158,-3.2519 -5.8749,-6.6735 -8.2754,-10.281 -5.4325,-5.6828 -11.378,-10.914 -15.971,-17.362 -5.8183,-7.4329 -11.855,-14.56 -18.594,-21.197 -8.6048,-10.408 -17.272,-20.867 -23.276,-33.064 -10.346,-24.14 23.794,-38.772 34.14,-14.631 z"
+         transform="matrix(0.04299524,0,0,0.05253585,33.355095,456.21654)"
+         inkscape:connector-curvature="0"
+         style="opacity:0.11220003;fill:#8b0000;fill-opacity:0.99216003;stroke:#a6a3a3;stroke-width:1.89999998;filter:url(#filter3826)"
+         id="path3820" />
     </g>
   </g>
 </svg>
