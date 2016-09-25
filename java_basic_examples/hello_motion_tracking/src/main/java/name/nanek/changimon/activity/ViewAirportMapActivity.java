@@ -29,7 +29,10 @@ import com.google.atap.tangoservice.TangoXyzIjData;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
@@ -43,13 +46,38 @@ public class ViewAirportMapActivity extends Activity {
 
     private static final String TAG = ViewAirportMapActivity.class.getSimpleName();
 
+    private static final int HUMAN_TOKEN_START_PERCENT_X = 50;
+    private static final int HUMAN_TOKEN_START_PERCENT_Y = 75;
+
     private Tango mTango;
     private TangoConfig mConfig;
+    private View mHumanTokenView;
+    private ViewGroup mContentView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_airport_map);
+        mHumanTokenView = findViewById(R.id.human_token);
+        mContentView = (ViewGroup) findViewById(R.id.content_view);
+    }
+
+    private void setHumanTokenInCenter() {
+        final int contentWidth = mContentView.getWidth();
+        final int contentHeight = mContentView.getHeight();
+
+        final int tokenWidth = mHumanTokenView.getWidth();
+        final int tokenHeight = mHumanTokenView.getHeight();
+
+        final int left = (contentWidth * HUMAN_TOKEN_START_PERCENT_X / 100) - tokenWidth;
+        final int top = (contentHeight * HUMAN_TOKEN_START_PERCENT_Y / 100) - tokenHeight;
+
+        Log.d(TAG, "Updating human token margins to: " + left + ", " + top);
+
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mHumanTokenView.getLayoutParams();
+        params.setMargins(left, top, 0, 0);
+        mHumanTokenView.requestLayout();
+        //mHumanTokenView.setLayoutParams(params);
     }
 
     @Override
@@ -90,6 +118,13 @@ public class ViewAirportMapActivity extends Activity {
         } catch(UnsatisfiedLinkError e) {
             Log.d(TAG, "Ignore not Tango, just display map");
         }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setHumanTokenInCenter();
+            }
+        }, 1000);
     }
 
     @Override
