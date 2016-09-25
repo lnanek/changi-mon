@@ -28,8 +28,8 @@
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:adjustViewBounds="true"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginLeft="440dp"
+        android:layout_marginTop="260dp"
         android:src="@drawable/butterfly_circle"
         />
 
@@ -38,8 +38,8 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:adjustViewBounds="true"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="340dp"
         android:src="@drawable/mask_circle"
         />
 
