@@ -17,10 +17,16 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import name.nanek.changimon.ChangimonApp;
 import name.nanek.changimon.activity.DebugOverlayActivity;
 import name.nanek.changimon.R;
+import name.nanek.changimon.model.FlightRecordRequest;
 import name.nanek.changimon.model.FlightRecordResponse;
+import name.nanek.changimon.model.UpdateOverlayRequest;
 
 public class FlightRecordOverlayService extends Service {
 
@@ -43,22 +49,8 @@ public class FlightRecordOverlayService extends Service {
 		LayoutInflater inflator = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 
 		overlayView = inflator.inflate(R.layout.service_flight_info_overlay, null);
-		TextView flightInfoView = (TextView) overlayView.findViewById(R.id.overlay_text);
-
-        FlightRecordResponse response = ChangimonApp.getInstance().currentResponse;
-		if ( null != response ) {
-            String displayString = response.getDisplayString();
-            displayString += "\nMons Collected 0/2";
-
-            Log.d(LOG_TAG, "displaying: " + displayString);
-			flightInfoView.setText(displayString);
-		} else {
-            flightInfoView.setText("Enter Your Flight for Live Updates!");
-        }
-
-
-		//chatHead = new ImageView(this);
-		//chatHead.setImageResource(R.drawable.face1);
+        EventBus.getDefault().register(this);
+        updateText();
 
 		params= new WindowManager.LayoutParams(
 				WindowManager.LayoutParams.WRAP_CONTENT,
@@ -105,6 +97,23 @@ public class FlightRecordOverlayService extends Service {
 		startForeground(mNotificationId, foregroundNotification());
 	}
 
+    public void updateText() {
+        if ( null == overlayView ) {
+            return;
+        }
+        TextView flightInfoView = (TextView) overlayView.findViewById(R.id.overlay_text);
+
+        String displayString;
+        FlightRecordResponse response = ChangimonApp.getInstance().currentResponse;
+        if ( null != response ) {
+            displayString = response.getDisplayString();
+        } else {
+            displayString = "Enter Your Flight for Live Updates!";
+        }
+        displayString += "\nMons Collected " + ChangimonApp.getInstance().collected + "/2";
+        Log.d(LOG_TAG, "displaying: " + displayString);
+        flightInfoView.setText(displayString);
+    }
 
 	protected Notification foregroundNotification()
 	{
@@ -131,27 +140,24 @@ public class FlightRecordOverlayService extends Service {
         mNotifyMgr.notify(mNotificationId, notification);
         return notification;
         /*
-
-        notification = new Notification(R.drawable.ic_launcher, "my Notification", System.currentTimeMillis());
 		notification.flags = notification.flags | Notification.FLAG_ONGOING_EVENT | Notification.FLAG_ONLY_ALERT_ONCE;
-		notification.contentIntent = notificationIntent();
-		//notification.setLatestEventInfo(this, "my Notification", "my Notification", notificationIntent());
-		((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).notify(id, notification);
-		return notification;
 		*/
 	}
-	private PendingIntent notificationIntent() {
-		Intent intent = new Intent(this, DebugOverlayActivity.class);
-		PendingIntent pending = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-		return pending;
-	}
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onUpdateOverlayRequest(UpdateOverlayRequest event) {
+        updateText();
+    }
 
 	@Override
 	public void onDestroy() {
         Log.d(LOG_TAG, "onDestroy");
-		super.onDestroy();
-		if (overlayView != null)
-			windowManager.removeView(overlayView);
+        super.onDestroy();
+        if (overlayView != null) {
+            EventBus.getDefault().unregister(this);
+            windowManager.removeView(overlayView);
+            overlayView = null;
+        }
 	}
 
 	@Override

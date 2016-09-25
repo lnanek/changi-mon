@@ -14,6 +14,8 @@ public class ChangimonApp extends Application {
 
     public FlightRecordResponse currentResponse;
 
+    public int collected;
+
     @Override
     public void onCreate() {
         instance = this;
