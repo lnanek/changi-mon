@@ -33,6 +33,8 @@ public class FlightRecordOverlayService extends Service {
 
     private static final String LOG_TAG = FlightRecordOverlayService.class.getSimpleName();
 
+    private static final int POLL_SITA_MS = 15 * 1000;
+
 	private WindowManager windowManager;
 	//private ImageView chatHead;
 	private View overlayView;
@@ -105,7 +107,24 @@ public class FlightRecordOverlayService extends Service {
 		windowManager.addView(overlayView, params);
 
 		startForeground(mNotificationId, foregroundNotification());
+
+        checkForSitaUpdate.run();
 	}
+
+    private Runnable checkForSitaUpdate = new Runnable() {
+        @Override
+        public void run() {
+            if ( null == overlayView ) {
+                return;
+            }
+
+            FlightRecordRequest request = ChangimonApp.getInstance().currentRequest;
+            if ( null != request ) {
+                // poll SITA for updates
+            }
+            overlayView.postDelayed(this, POLL_SITA_MS);
+        }
+    };
 
     public void updateText() {
         if ( null == overlayView ) {

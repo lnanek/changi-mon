@@ -51,7 +51,7 @@ public class ViewAirportMapActivity extends Activity {
 
     private static final String TAG = ViewAirportMapActivity.class.getSimpleName();
 
-    public static float sTangoToPixelFactor = 150;
+    public static float sTangoToPixelFactor = 220;
 
     private static final Boolean DEBUG_AUTO_X_MOVEMENT = null;
     //private static final Boolean DEBUG_AUTO_X_MOVEMENT = false;

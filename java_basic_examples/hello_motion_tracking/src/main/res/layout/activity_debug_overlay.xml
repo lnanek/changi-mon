@@ -5,6 +5,7 @@
     android:padding="20dp"
     android:background="#FEFEFE"
     android:orientation="vertical"
+    android:keepScreenOn="true"
     tools:context=".activity.DebugOverlayActivity" >
 
     <Button

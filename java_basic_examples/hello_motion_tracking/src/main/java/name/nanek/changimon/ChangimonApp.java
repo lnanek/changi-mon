@@ -2,6 +2,7 @@ package name.nanek.changimon;
 
 import android.app.Application;
 
+import name.nanek.changimon.model.FlightRecordRequest;
 import name.nanek.changimon.model.FlightRecordResponse;
 
 /**
@@ -13,6 +14,8 @@ public class ChangimonApp extends Application {
     private static ChangimonApp instance;
 
     public FlightRecordResponse currentResponse;
+
+    public FlightRecordRequest currentRequest;
 
     public int collected;
 

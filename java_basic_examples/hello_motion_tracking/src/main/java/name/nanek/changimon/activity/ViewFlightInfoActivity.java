@@ -81,6 +81,9 @@ public class ViewFlightInfoActivity extends Activity {
         progressBar.setVisibility(View.VISIBLE);
 
         final FlightRecordRequest request = new FlightRecordRequest();
+
+        ChangimonApp.getInstance().currentRequest = request;
+
         request.airline = airlineInput.getText().toString();
         request.flightNumber = flightNumberInput.getText().toString();
         EventBus.getDefault().post(request);
