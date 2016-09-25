@@ -15,8 +15,9 @@
 
     <ImageView
         android:id="@+id/human_token"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/human_token"
         android:visibility="invisible"
         tools:visibility="visible"
@@ -26,6 +27,7 @@
         android:id="@+id/marker_1"
         android:layout_width="44dp"
         android:layout_height="44dp"
+        android:adjustViewBounds="true"
         android:layout_marginLeft="300dp"
         android:layout_marginTop="180dp"
         android:src="@drawable/butterfly_circle"
@@ -35,6 +37,7 @@
         android:id="@+id/marker_2"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:adjustViewBounds="true"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="220dp"
         android:src="@drawable/mask_circle"
