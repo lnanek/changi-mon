@@ -113,30 +113,12 @@ public class ViewFlightInfoActivity extends Activity {
         viewFlightInfoButton.setEnabled(true);
         progressBar.setVisibility(View.GONE);
 
-        String flightInfoDisplay = "";
-
-        // E.g. BA0012
-        flightInfoDisplay += "Flight: " + event.airlineCode;
-        flightInfoDisplay += " " + event.flightNumber;
-        flightInfoDisplay += "\n";
-
-        // E.g. Departing 2016-09-25
-        flightInfoDisplay += event.getAdiDisplayString();
-        flightInfoDisplay += " " + event.flightDate;
-        flightInfoDisplay += "\n";
-
-        if (null != event.flightRecord && !event.flightRecord.isEmpty()) {
-            final FlightRecord lastRecord = event.flightRecord.get(event.flightRecord.size() - 1);
-
-            flightInfoDisplay += "Status: " + lastRecord.statusText + "\n";
-            flightInfoDisplay += "Final Terminal: " + lastRecord.terminal + "\n";
-            flightInfoDisplay += "Time: " + lastRecord.scheduled + "\n";
-        }
-
-        flightInfoView.setText(flightInfoDisplay);
+        //flightInfoView.setText(event.getDisplayString());
 
         startService(new Intent(getApplication(), FlightRecordOverlayService.class));
 
+        final Intent startActivity = new Intent(this, ViewAirportMapActivity.class);
+        startActivity(startActivity);
     }
 
     @Override

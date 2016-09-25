@@ -8,31 +8,57 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import name.nanek.changimon.ChangimonApp;
 import name.nanek.changimon.activity.DebugOverlayActivity;
 import name.nanek.changimon.R;
+import name.nanek.changimon.model.FlightRecordResponse;
 
 public class FlightRecordOverlayService extends Service {
 
+    private static final String LOG_TAG = FlightRecordOverlayService.class.getSimpleName();
+
 	private WindowManager windowManager;
-	private ImageView chatHead;
+	//private ImageView chatHead;
+	private View overlayView;
 	WindowManager.LayoutParams params;
 	private Notification notification;
     int mNotificationId = 001;
 
 	@Override
 	public void onCreate() {
+        Log.d(LOG_TAG, "onCreate");
 		super.onCreate();
 
 		windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
-		chatHead = new ImageView(this);
-		chatHead.setImageResource(R.drawable.face1);
+		LayoutInflater inflator = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+
+		overlayView = inflator.inflate(R.layout.service_flight_info_overlay, null);
+		TextView flightInfoView = (TextView) overlayView.findViewById(R.id.overlay_text);
+
+        FlightRecordResponse response = ChangimonApp.getInstance().currentResponse;
+		if ( null != response ) {
+            String displayString = response.getDisplayString();
+            displayString += "\nMons Collected 0/2";
+
+            Log.d(LOG_TAG, "displaying: " + displayString);
+			flightInfoView.setText(displayString);
+		} else {
+            flightInfoView.setText("Enter Your Flight for Live Updates!");
+        }
+
+
+		//chatHead = new ImageView(this);
+		//chatHead.setImageResource(R.drawable.face1);
 
 		params= new WindowManager.LayoutParams(
 				WindowManager.LayoutParams.WRAP_CONTENT,
@@ -46,7 +72,7 @@ public class FlightRecordOverlayService extends Service {
 		params.y = 100;
 		
 		//this code is for dragging the chat head
-		chatHead.setOnTouchListener(new View.OnTouchListener() {
+		overlayView.setOnTouchListener(new View.OnTouchListener() {
 			private int initialX;
 			private int initialY;
 			private float initialTouchX;
@@ -68,13 +94,13 @@ public class FlightRecordOverlayService extends Service {
 							+ (int) (event.getRawX() - initialTouchX);
 					params.y = initialY
 							+ (int) (event.getRawY() - initialTouchY);
-					windowManager.updateViewLayout(chatHead, params);
+					windowManager.updateViewLayout(overlayView, params);
 					return true;
 				}
 				return false;
 			}
 		});
-		windowManager.addView(chatHead, params);
+		windowManager.addView(overlayView, params);
 
 		startForeground(mNotificationId, foregroundNotification());
 	}
@@ -122,9 +148,10 @@ public class FlightRecordOverlayService extends Service {
 
 	@Override
 	public void onDestroy() {
+        Log.d(LOG_TAG, "onDestroy");
 		super.onDestroy();
-		if (chatHead != null)
-			windowManager.removeView(chatHead);
+		if (overlayView != null)
+			windowManager.removeView(overlayView);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package name.nanek.changimon.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +43,39 @@ public class FlightRecordResponse {
             return "Arriving";
         }
         return "Unknown";
+    }
+
+    public String getDisplayString() {
+
+        String flightInfoDisplay = "";
+
+        // E.g. BA0012
+        flightInfoDisplay += airlineCode;
+        flightInfoDisplay += " " + flightNumber;
+        flightInfoDisplay += "\n";
+
+        // E.g. Departing 2016-09-25
+        flightInfoDisplay += getAdiDisplayString();
+        flightInfoDisplay += " " + flightDate;
+        flightInfoDisplay += "\n";
+
+        if (null != flightRecord && !flightRecord.isEmpty()) {
+            final FlightRecord lastRecord = flightRecord.get(flightRecord.size() - 1);
+
+            flightInfoDisplay += "Status " + lastRecord.statusText + "\n";
+            flightInfoDisplay += "Terminal " + lastRecord.terminal;
+            flightInfoDisplay += " " + getTime(lastRecord.scheduled);
+        }
+        return flightInfoDisplay;
+    }
+
+    private String getTime(Date date) {
+        if ( null == date ) {
+            return "";
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        String shortTimeStr = sdf.format(date);
+        return shortTimeStr;
     }
 
     @Override

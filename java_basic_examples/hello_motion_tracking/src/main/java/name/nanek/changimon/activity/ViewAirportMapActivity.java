@@ -56,46 +56,52 @@ public class ViewAirportMapActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        // Initialize Tango Service as a normal Android Service, since we call mTango.disconnect()
-        // in onPause, this will unbind Tango Service, so every time when onResume gets called, we
-        // should create a new Tango object.
-        mTango = new Tango(ViewAirportMapActivity.this, new Runnable() {
-            // Pass in a Runnable to be called from UI thread when Tango is ready, this Runnable
-            // will be running on a new thread.
-            // When Tango is ready, we can call Tango functions safely here only when there is no UI
-            // thread changes involved.
-            @Override
-            public void run() {
-                synchronized (ViewAirportMapActivity.this) {
-                    mConfig = setupTangoConfig(mTango);
+        try {
+            // Initialize Tango Service as a normal Android Service, since we call mTango.disconnect()
+            // in onPause, this will unbind Tango Service, so every time when onResume gets called, we
+            // should create a new Tango object.
+            mTango = new Tango(ViewAirportMapActivity.this, new Runnable() {
+                // Pass in a Runnable to be called from UI thread when Tango is ready, this Runnable
+                // will be running on a new thread.
+                // When Tango is ready, we can call Tango functions safely here only when there is no UI
+                // thread changes involved.
+                @Override
+                public void run() {
+                    synchronized (ViewAirportMapActivity.this) {
+                        mConfig = setupTangoConfig(mTango);
 
-                    try {
-                        setTangoListeners();
-                    } catch (TangoErrorException e) {
-                        Log.e(TAG, getString(R.string.exception_tango_error), e);
-                    } catch (SecurityException e) {
-                        Log.e(TAG, getString(R.string.permission_motion_tracking), e);
-                    }
-                    try {
-                        mTango.connect(mConfig);
-                    } catch (TangoOutOfDateException e) {
-                        Log.e(TAG, getString(R.string.exception_out_of_date), e);
-                    } catch (TangoErrorException e) {
-                        Log.e(TAG, getString(R.string.exception_tango_error), e);
+                        try {
+                            setTangoListeners();
+                        } catch (TangoErrorException e) {
+                            Log.e(TAG, getString(R.string.exception_tango_error), e);
+                        } catch (SecurityException e) {
+                            Log.e(TAG, getString(R.string.permission_motion_tracking), e);
+                        }
+                        try {
+                            mTango.connect(mConfig);
+                        } catch (TangoOutOfDateException e) {
+                            Log.e(TAG, getString(R.string.exception_out_of_date), e);
+                        } catch (TangoErrorException e) {
+                            Log.e(TAG, getString(R.string.exception_tango_error), e);
+                        }
                     }
                 }
-            }
-        });
+            });
+        } catch(UnsatisfiedLinkError e) {
+            Log.d(TAG, "Ignore not Tango, just display map");
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         synchronized (this) {
-            try {
-                mTango.disconnect();
-            } catch (TangoErrorException e) {
-                Log.e(TAG, getString(R.string.exception_tango_error), e);
+            if ( null != mTango ) {
+                try {
+                    mTango.disconnect();
+                } catch (TangoErrorException e) {
+                    Log.e(TAG, getString(R.string.exception_tango_error), e);
+                }
             }
         }
     }
