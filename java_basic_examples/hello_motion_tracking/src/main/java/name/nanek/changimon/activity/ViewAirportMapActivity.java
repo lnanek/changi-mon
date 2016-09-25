@@ -33,6 +33,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import java.util.ArrayList;
 
@@ -46,10 +47,10 @@ public class ViewAirportMapActivity extends Activity {
 
     private static final String TAG = ViewAirportMapActivity.class.getSimpleName();
 
+    public static float sTangoToPixelFactor = 120;
+
     private static final int HUMAN_TOKEN_START_PERCENT_X = 50;
     private static final int HUMAN_TOKEN_START_PERCENT_Y = 75;
-
-    private static final float TANGO_TO_PIXEL_FACTOR = 60;
 
     private Tango mTango;
     private TangoConfig mConfig;
@@ -67,6 +68,18 @@ public class ViewAirportMapActivity extends Activity {
         setContentView(R.layout.activity_view_airport_map);
         mHumanTokenView = findViewById(R.id.human_token);
         mContentView = (ViewGroup) findViewById(R.id.content_view);
+
+        ViewTreeObserver vto = mContentView.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                // do something now when the object is loaded
+                // e.g. find the real size of it etc
+                mContentView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+
+                setHumanTokenInCenter();
+            }
+        });
     }
 
     private synchronized void setHumanTokenInCenter() {
@@ -87,6 +100,8 @@ public class ViewAirportMapActivity extends Activity {
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mHumanTokenView.getLayoutParams();
         params.setMargins(humanTokenRenderX, humanTokenRenderY, 0, 0);
         mHumanTokenView.requestLayout();
+
+        mHumanTokenView.setVisibility(View.VISIBLE);
         //mHumanTokenView.setLayoutParams(params);
     }
 
@@ -129,12 +144,14 @@ public class ViewAirportMapActivity extends Activity {
             Log.d(TAG, "Ignore not Tango, just display map");
         }
 
+        /*
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 setHumanTokenInCenter();
             }
         }, 1000);
+        */
     }
 
     @Override
@@ -250,8 +267,13 @@ public class ViewAirportMapActivity extends Activity {
     private synchronized  void updateHumanTokenPosition(float deltaX, float deltaY, float deltaZ) {
         Log.d(TAG, "updateHumanTokenPosition(" + deltaX + ", " + deltaY + ", " + deltaZ + ")");
 
-        humanTokenCurrentX += (deltaX * TANGO_TO_PIXEL_FACTOR);
-        humanTokenCurrentY += (deltaY * TANGO_TO_PIXEL_FACTOR);
+        // No layout yet, ignore
+        if ( null == humanTokenCurrentX || null == humanTokenCurrentY ) {
+            return;
+        }
+
+        humanTokenCurrentX += (deltaX * sTangoToPixelFactor);
+        humanTokenCurrentY += (deltaY * sTangoToPixelFactor);
 
         int newHumanTokenRenderX = Math.round(humanTokenCurrentX);
         int newHumanTokenRenderY = Math.round(humanTokenCurrentY);

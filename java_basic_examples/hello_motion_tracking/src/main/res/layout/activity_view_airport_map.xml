@@ -18,6 +18,7 @@
         android:id="@+id/human_token"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:visibility="invisible"
         android:src="@drawable/human_token"
         />
 
