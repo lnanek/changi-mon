@@ -65,6 +65,38 @@ wget http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_250_{0.
 
 
 
+
+
+
+**Zoom 1000 bounds:
+
+top left:
+http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_1000_3_26.png
+
+bottom right
+http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_1000_56_36.png
+
+
+**Download all Zoom 1000 tiles:
+
+for j in {26..36}; do;
+wget http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_1000_{0..56}_${j}.png
+done
+
+
+**Stitch zoom 1000 rows:
+
+for j in {26..36}; do;
+convert T3L2_1000_0_${j}.png T3L2_1000_1_${j}.png +append output_${j}.png
+for i in {0..56}; do; convert output_${j}.png T3L2_1000_${i}_${j}.png +append output_${j}.png; done
+done;
+
+
+
+
+
+
+
 wget http://maps-cdn4.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_500_{0..30}_6.png
 
 http://maps-cdn4.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_500_0_6.png
