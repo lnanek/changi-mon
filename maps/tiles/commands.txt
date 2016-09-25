@@ -80,7 +80,7 @@ http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_1000_56_36.p
 **Download all Zoom 1000 tiles:
 
 for j in {26..36}; do;
-wget http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_1000_{0..56}_${j}.png
+wget http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_1000_{0..61}_${j}.png
 done
 
 
@@ -88,10 +88,22 @@ done
 
 for j in {26..36}; do;
 convert T3L2_1000_0_${j}.png T3L2_1000_1_${j}.png +append output_${j}.png
-for i in {0..56}; do; convert output_${j}.png T3L2_1000_${i}_${j}.png +append output_${j}.png; done
+for i in {0..61}; do; convert output_${j}.png T3L2_1000_${i}_${j}.png +append output_${j}.png; done
 done;
 
 
+**Stitch rows:
+
+➜  zoom_1000 git:(master) ✗ convert output_26.png output_27.png -append output.png
+➜  zoom_1000 git:(master) ✗ convert output.png output_28.png -append output.png
+➜  zoom_1000 git:(master) ✗ convert output.png output_29.png -append output.png
+➜  zoom_1000 git:(master) ✗ convert output.png output_30.png -append output.png
+➜  zoom_1000 git:(master) ✗ convert output.png output_31.png -append output.png
+➜  zoom_1000 git:(master) ✗ convert output.png output_32.png -append output.png
+➜  zoom_1000 git:(master) ✗ convert output.png output_33.png -append output.png
+➜  zoom_1000 git:(master) ✗ convert output.png output_34.png -append output.png
+➜  zoom_1000 git:(master) ✗ convert output.png output_35.png -append output.png
+➜  zoom_1000 git:(master) ✗ convert output.png output_36.png -append output.png
 
 
 
