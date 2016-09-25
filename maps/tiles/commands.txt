@@ -4,21 +4,37 @@ http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_250_6_7.png
 wget http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_250_20_7.png
 
 
-convert T3L2_250_0_9.png T3L2_250_1_9.png +append output_9.png
-convert output_9.png T3L2_250_2_9.png +append output_9.png
-convert output_9.png T3L2_250_3_9.png +append output_9.png
-convert output_9.png T3L2_250_4_9.png +append output_9.png
-convert output_9.png T3L2_250_5_9.png +append output_9.png
-convert output_9.png T3L2_250_6_9.png +append output_9.png
-convert output_9.png T3L2_250_7_9.png +append output_9.png
-convert output_9.png T3L2_250_8_9.png +append output_9.png
-convert output_9.png T3L2_250_9_9.png +append output_9.png
-convert output_9.png T3L2_250_10_9.png +append output_9.png
-convert output_9.png T3L2_250_11_9.png +append output_9.png
-convert output_9.png T3L2_250_12_9.png +append output_9.png
-convert output_9.png T3L2_250_13_9.png +append output_9.png
-convert output_9.png T3L2_250_14_9.png +append output_9.png
-convert output_9.png T3L2_250_15_9.png +append output_9.png
+convert T3L2_500_0_14.png T3L2_500_1_14.png +append output_14.png
+convert output_14.png T3L2_500_2_14.png +append output_14.png
+convert output_14.png T3L2_500_3_14.png +append output_14.png
+convert output_14.png T3L2_500_4_14.png +append output_14.png
+convert output_14.png T3L2_500_5_14.png +append output_14.png
+convert output_14.png T3L2_500_6_14.png +append output_14.png
+convert output_14.png T3L2_500_7_14.png +append output_14.png
+convert output_14.png T3L2_500_8_14.png +append output_14.png
+convert output_14.png T3L2_500_9_14.png +append output_14.png
+convert output_14.png T3L2_500_10_14.png +append output_14.png
+convert output_14.png T3L2_500_11_14.png +append output_14.png
+convert output_14.png T3L2_500_12_14.png +append output_14.png
+convert output_14.png T3L2_500_13_14.png +append output_14.png
+convert output_14.png T3L2_500_14_14.png +append output_14.png
+convert output_14.png T3L2_500_15_14.png +append output_14.png
+convert output_14.png T3L2_500_16_14.png +append output_14.png
+convert output_14.png T3L2_500_17_14.png +append output_14.png
+convert output_14.png T3L2_500_18_14.png +append output_14.png
+convert output_14.png T3L2_500_19_14.png +append output_14.png
+convert output_14.png T3L2_500_20_14.png +append output_14.png
+convert output_14.png T3L2_500_21_14.png +append output_14.png
+convert output_14.png T3L2_500_22_14.png +append output_14.png
+convert output_14.png T3L2_500_23_14.png +append output_14.png
+convert output_14.png T3L2_500_24_14.png +append output_14.png
+convert output_14.png T3L2_500_25_14.png +append output_14.png
+convert output_14.png T3L2_500_26_14.png +append output_14.png
+convert output_14.png T3L2_500_27_14.png +append output_14.png
+convert output_14.png T3L2_500_28_14.png +append output_14.png
+convert output_14.png T3L2_500_29_14.png +append output_14.png
+convert output_14.png T3L2_500_30_14.png +append output_14.png
+
 
 convert output_7.png output_8.png -append output_7-8.png
 
@@ -26,10 +42,33 @@ convert output_7.png output_8.png -append output_7-8.png
 convert output_6-8.png output_9.png -append output_6-9.png
 
 
-for i in {1..100}
-do
-    wget "example.com/imageID="$i
-done
+
+
+
+convert T3L2_500_0_15.png T3L2_500_1_15.png +append output_15.png
+for i in {2..30}; do; convert output_15.png T3L2_500_${i}_15.png +append output_15.png; done
+
+for j in {6..17}; do;
+convert T3L2_500_0_${j}.png T3L2_500_1_${j}.png +append output_${j}.png
+for i in {2..30}; do; convert output_${j}.png T3L2_500_${i}_${j}.png +append output_${j}.png; done
+done;
+
+
+convert T3L2_500_stitch.png -crop 2048x2048 tiles_2048/tile%03d.png
+
+
+
+
 
 
 wget http://maps-cdn2.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_250_{0..15}_8.png
+
+
+
+wget http://maps-cdn4.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_500_{0..30}_6.png
+
+http://maps-cdn4.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_500_0_6.png
+
+http://maps-cdn4.cag.wwprojects.com/public/standard/T3L2/tiles/T3L2_500_30_17.png
+
+
