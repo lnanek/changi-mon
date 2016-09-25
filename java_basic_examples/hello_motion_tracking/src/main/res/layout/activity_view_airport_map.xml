@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    android:gravity="center"
-    >
+    android:gravity="center">
 
    <ImageView
        android:layout_width="match_parent"
@@ -18,8 +17,27 @@
         android:id="@+id/human_token"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:visibility="invisible"
         android:src="@drawable/human_token"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        />
+
+    <ImageView
+        android:id="@+id/marker_1"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="180dp"
+        android:src="@drawable/butterfly_circle"
+        />
+
+    <ImageView
+        android:id="@+id/marker_2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="220dp"
+        android:src="@drawable/mask_circle"
         />
 
 </FrameLayout>
